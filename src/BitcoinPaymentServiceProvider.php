@@ -35,7 +35,6 @@ class BitcoinPaymentServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        echo "register".PHP_EOL;
         if ($this->app->runningInConsole()) {
             $this->commands([
                 Commands\CheckPayment::class,
@@ -64,8 +63,6 @@ class BitcoinPaymentServiceProvider extends ServiceProvider
      */
     protected function registerBitcoind()
     {
-
-        echo "registerBitcoind".PHP_EOL;
         $this->app->singleton('Pondol\BtcPayment\Bitcoind', function ($app) {
             return $this->resolveBtc($app);
         });
