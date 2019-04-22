@@ -44,9 +44,7 @@ class BitcoinPaymentServiceProvider extends ServiceProvider
 
         $this->registerEloquentFactoriesFrom(__DIR__.'/factories');
 
-
         $this->registerBitcoind();
-
 
         $this->registerBitcoinPayment();
     }

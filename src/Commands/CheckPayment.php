@@ -13,7 +13,6 @@ use moki74\LaravelBtc\Models\UnknownTransaction;
 
 class CheckPayment extends Command
 {
-
     /**
      * The name and signature of the console command.
      *

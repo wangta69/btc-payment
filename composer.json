@@ -18,7 +18,6 @@
             "Pondol\\PaymentBtc\\": "src"
         }
     },
-
      "extra": {
         "laravel": {
             "providers": [

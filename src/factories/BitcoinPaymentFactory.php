@@ -12,9 +12,6 @@ use Pondol\BtcPayment\Models\Payment;
 |
 */
 
-
-
-
 $factory->define(moki74\LaravelBtc\Models\Payment::class, function (Faker\Generator $faker) {
     return [
         'address' => function () {

@@ -15,7 +15,7 @@ class Payment extends Model
    {
        return $this->belongsTo('App\User');
    }
-
+   
    public function scopeUnpaid($query)
    {
        return $query->where('txid', '=','');

@@ -27,7 +27,6 @@ echo $bitcoind->error;
 echo $bitcoind->status;
 */
 namespace Pondol\BtcPayment;
-
 class Bitcoind
 {
     // Configuration options

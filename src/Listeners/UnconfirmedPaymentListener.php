@@ -14,7 +14,7 @@ class UnconfirmedPaymentListener
      */
     public function __construct()
     {
-        //
+        // 
     }
 
     /**

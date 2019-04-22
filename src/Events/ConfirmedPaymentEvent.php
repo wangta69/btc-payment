@@ -11,7 +11,6 @@ class ConfirmedPaymentEvent
     use SerializesModels;
 
     public $confirmedPayment;
-
     /**
      * Fired when num of confirmations on block chain meet BITCOIND_MIN_CONFIRMATIONS in .env file.
      *

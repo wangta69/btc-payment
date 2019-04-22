@@ -11,9 +11,7 @@ return [
     | but this is strongly discouraged by developers.
     |
     */
-
     'scheme' => env('BITCOIND_SCHEME', 'http'),
-
     /*
     |--------------------------------------------------------------------------
     | Bitcoind JSON-RPC Host
