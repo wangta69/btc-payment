@@ -21,7 +21,7 @@
      "extra": {
         "laravel": {
             "providers": [
-                "Pondol\\PaymentBtc\\BitcoinPaymentServiceProvider"
+                "Pondol\\BtcPayment\\BitcoinPaymentServiceProvider"
             ]
         }
     }
