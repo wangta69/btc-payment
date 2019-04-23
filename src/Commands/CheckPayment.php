@@ -2,14 +2,14 @@
 
 namespace Pondol\BtcPayment\Commands;
 
-use moki74\LaravelBtc\Bitcoind;
+use Pondol\BtcPayment\Bitcoind;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
-use moki74\LaravelBtc\Events\ConfirmedPaymentEvent;
-use moki74\LaravelBtc\Events\UnconfirmedPaymentEvent;
-use moki74\LaravelBtc\Events\UnknownTransactionEvent;
-use moki74\LaravelBtc\Models\Payment;
-use moki74\LaravelBtc\Models\UnknownTransaction;
+use Pondol\BtcPayment\Events\ConfirmedPaymentEvent;
+use Pondol\BtcPayment\Events\UnconfirmedPaymentEvent;
+use Pondol\BtcPayment\Events\UnknownTransactionEvent;
+use Pondol\BtcPayment\Models\Payment;
+use Pondol\BtcPayment\Models\UnknownTransaction;
 
 class CheckPayment extends Command
 {

@@ -2,7 +2,7 @@
 
 namespace Pondol\BtcPayment\Events;
 
-use moki74\LaravelBtc\Models\Payment;
+use Pondol\BtcPayment\Models\Payment;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 

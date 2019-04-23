@@ -2,7 +2,7 @@
 
 namespace Pondol\BtcPayment\Events;
 
-use moki74\LaravelBtc\Models\UnknownTransaction;
+use Pondol\BtcPayment\Models\UnknownTransaction;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 
