@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
 {
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['user_id', 'address', 'txid'];//
+
    public function order()
    {
        return $this->belongsTo('App\Order');
@@ -15,7 +23,7 @@ class Payment extends Model
    {
        return $this->belongsTo('App\User');
    }
-   
+
    public function scopeUnpaid($query)
    {
        return $query->where('txid', '=','');

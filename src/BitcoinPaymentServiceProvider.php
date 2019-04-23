@@ -45,7 +45,7 @@ class BitcoinPaymentServiceProvider extends ServiceProvider
 
         $this->registerBitcoind();
 
-        $this->registerBitcoinPayment();
+        // $this->registerBitcoinPayment();
     }
 
     /**
@@ -83,25 +83,26 @@ class BitcoinPaymentServiceProvider extends ServiceProvider
         );
     }
 
-    /**
+    /*
     * @return \moki74\LaravelBtc\Models\Payment object
-    */
+
     protected function registerBitcoinPayment()
     {
         $this->app->bind('Pondol\BtcPayment\Models\Payment', function ($app) {
             return $this->resolveBtcPayment($app);
         });
     }
-
-    /**
+    */
+    /*
      *
      * @param App $app
      * @return \moki74\LaravelBtc\Models\Payment object
-     */
+
     private function resolveBtcPayment($app)
     {
         $payment = new \Pondol\BtcPayment\Models\Payment;
         $payment->address = resolve("bitcoind")->getnewaddress();
         return $payment;
     }
+    */
 }

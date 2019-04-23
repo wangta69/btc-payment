@@ -51,7 +51,8 @@ class CheckPayment extends Command
     private function checkPayment($bitcoind)
     {
         // get transaction from bitcoind
-        $transactions = $bitcoind->listtransactions('', 50);
+        // $transactions = $bitcoind->listtransactions('*', 50);
+        $transactions = $bitcoind->listtransactions('*', 5); // 테스트를 용이하게 하기위해서 5개만 구한다. (나중에 되도록 많이)
         if (!is_array($transactions)) {
             $transactions = $transactions->get();
         }
@@ -63,8 +64,10 @@ class CheckPayment extends Command
         // reindex array - only transactions which receive bitcoins
         $transactions = array_values($transactions);
 
+        // print_r($transactions);
         // Prepayments without transaction - not paid yet
         // taid 가 없는 것 (아직 결제가 되지 않은 것만 체크)
+        /*
         $prepayments_no_tx = Payment::unpaid()->get();
         foreach ($prepayments_no_tx as $prepayment_no_tx) {
             // check if there are multiple payments to same address
@@ -99,7 +102,6 @@ class CheckPayment extends Command
             }
         }
 
-        //Check for Prepayments with transaction in blockchain (these are paid), but we need number of confirmations
         $prepayments = Payment::not_confirmed()->get();
         foreach ($prepayments as $prepayment) {
             $key = array_search($prepayment->txid, array_column($transactions, 'txid'));
@@ -112,6 +114,45 @@ class CheckPayment extends Command
                 }
                 $prepayment->save();
             }
+        }
+        */
+        echo "------------------";
+
+    //     print_r($transactions);
+        // received 된 내용중 account 가 존재 하면 db에 입력한다.
+        // $prepayment->confirmations 에서 bitcoind.min-confirmations 보다 크면 wallet 으로 옮기고 결제완료 처리를 진행한다.
+        //Check for Prepayments with transaction in blockchain (these are paid), but we need number of confirmations
+
+        foreach ($transactions as $trans) {
+            if ($trans['account']) {
+
+                $payment = Payment::firstOrNew(['user_id' => $trans['account'], 'address'=>$trans['address'], 'txid' => $trans['txid']]);
+                $payment->amount = $trans['amount'];
+                $payment->confirmations = $trans['confirmations'];
+                echo $trans['confirmations'].PHP_EOL;
+                if ($trans['confirmations'] >= config('bitcoind.min-confirmations')) {
+                    $payment->paid = 1;
+                    event(new ConfirmedPaymentEvent($payment));
+                    $bitcoind->setaccount($trans['address'],'');
+                    //move this address to main wallet
+
+                }
+
+                $payment->save();
+            }
+
+            /*
+            $key = array_search($prepayment->txid, array_column($transactions, 'txid'));
+            if ($key !== false) {
+                $prepayment->confirmations = $transactions[$key]['confirmations'];
+                // if we have min confirmations, payment is confirmed
+                if ($prepayment->confirmations >= config('bitcoind.min-confirmations')) {
+                    $prepayment->paid = 1;
+                    event(new ConfirmedPaymentEvent($prepayment));
+                }
+                $prepayment->save();
+            }
+            */
         }
     }
 }
