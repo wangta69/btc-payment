@@ -11,7 +11,6 @@ class UnconfirmedPaymentEvent
     use SerializesModels;
 
     public $unconfirmedPayment;
-
     /**
      * Create a new event instance.
      *
