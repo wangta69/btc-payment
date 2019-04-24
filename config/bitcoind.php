@@ -3,6 +3,17 @@
 return [
     /*
     |--------------------------------------------------------------------------
+    | User Model namespace
+    |--------------------------------------------------------------------------
+    |
+    | Specify the full namespace to your User model.
+    | e.g. 'Acme\Entities\User'
+    |
+    */
+    'user' => 'App\Models\User',
+
+    /*
+    |--------------------------------------------------------------------------
     | Bitcoind JSON-RPC Scheme
     |--------------------------------------------------------------------------
     | URI scheme of Bitcoin Core's JSON-RPC server.

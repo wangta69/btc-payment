@@ -20,6 +20,7 @@ class ConfirmedPaymentEvent
     public function __construct(Payment $confirmedPayment)
     {
         $this->confirmedPayment = $confirmedPayment;
+        echo "Pondol\BtcPayment\Events Called".PHP_EOL;
         //Log::debug('ConfirmedPaymentEvent constructor :'.$this->confirmedPayment);
     }
 }
