@@ -10,8 +10,8 @@ return [
     | e.g. 'Acme\Entities\User'
     |
     */
-    'user' => 'App\Models\User',
-
+    // user' => 'App\Models\User',
+    'user' => App\Models\Auth\User\User::class,
     /*
     |--------------------------------------------------------------------------
     | Bitcoind JSON-RPC Scheme
@@ -22,7 +22,7 @@ return [
     | but this is strongly discouraged by developers.
     |
     */
-    'scheme' => env('BITCOIND_SCHEME', 'http'),
+    'bitcond_scheme' => env('BITCOIND_SCHEME', 'http'),
     /*
     |--------------------------------------------------------------------------
     | Bitcoind JSON-RPC Host
@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'host' => env('BITCOIND_HOST', 'localhost'),
+    'bitcond_host' => env('BITCOIND_HOST', 'localhost'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'port' => env('BITCOIND_PORT', 8332),
+    'bitcond_port' => env('BITCOIND_PORT', 8332),
 
     /*
     |--------------------------------------------------------------------------
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'user' => env('BITCOIND_USER', ''),
+    'bitcond_user' => env('BITCOIND_USER', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -74,7 +74,7 @@ return [
     |
     */
 
-    'password' => env('BITCOIND_PASSWORD', ''),
+    'bitcond_password' => env('BITCOIND_PASSWORD', ''),
 
     /*
     |--------------------------------------------------------------------------

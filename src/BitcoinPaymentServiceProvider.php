@@ -41,25 +41,13 @@ class BitcoinPaymentServiceProvider extends ServiceProvider
             ]);
         }
 
-        $this->registerEloquentFactoriesFrom(__DIR__.'/factories');
-
         $this->registerBitcoind();
 
         // $this->registerBitcoinPayment();
     }
 
     /**
-     *
-     * @param  string $path [path to factory]
-     * @return Illuminate\Database\Eloquent\Factory
-     */
-    protected function registerEloquentFactoriesFrom($path)
-    {
-        $this->app->make(EloquentFactory::class)->load($path);
-    }
-
-    /**
-     * @return \moki74\LaravelBtc\Bitcoind object
+     * @return \Pondol\BtcPayment\Bitcoind object
      */
     protected function registerBitcoind()
     {
@@ -71,38 +59,15 @@ class BitcoinPaymentServiceProvider extends ServiceProvider
     /**
      *
      * @param App $app
-     * @return \moki74\LaravelBtc\Bitcoind object
+     * @return \Pondol\BtcPayment\Bitcoind object
      */
     private function resolveBtc($app)
     {
         return new \Pondol\BtcPayment\Bitcoind(
-            $app['config']->get('bitcoind.user'),
-            $app['config']->get('bitcoind.password'),
-            $app['config']->get('bitcoind.host', 'localhost'),
-            $app['config']->get('bitcoind.port', 18332)
+            $app['config']->get('bitcoind.bitcond_user'),
+            $app['config']->get('bitcoind.bitcond_password'),
+            $app['config']->get('bitcoind.bitcond_host', 'localhost'),
+            $app['config']->get('bitcoind.bitcond_port', 18332)
         );
     }
-
-    /*
-    * @return \moki74\LaravelBtc\Models\Payment object
-
-    protected function registerBitcoinPayment()
-    {
-        $this->app->bind('Pondol\BtcPayment\Models\Payment', function ($app) {
-            return $this->resolveBtcPayment($app);
-        });
-    }
-    */
-    /*
-     *
-     * @param App $app
-     * @return \moki74\LaravelBtc\Models\Payment object
-
-    private function resolveBtcPayment($app)
-    {
-        $payment = new \Pondol\BtcPayment\Models\Payment;
-        $payment->address = resolve("bitcoind")->getnewaddress();
-        return $payment;
-    }
-    */
 }

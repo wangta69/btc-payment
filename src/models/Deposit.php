@@ -4,7 +4,7 @@ namespace Pondol\BtcPayment\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Payment extends Model
+class Deposit extends Model
 {
 
     /**
@@ -19,6 +19,12 @@ class Payment extends Model
    {
        return $this->belongsTo(config('bitcoind.user'));
    }
+
+   public function scopeSame_address($query, $address)
+   {
+       return $query->where('paid', 1)->where('address', $address);
+   }
+
 
    public function scopeUnpaid($query)
    {

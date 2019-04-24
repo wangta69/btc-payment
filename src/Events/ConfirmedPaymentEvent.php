@@ -2,7 +2,7 @@
 
 namespace Pondol\BtcPayment\Events;
 
-use Pondol\BtcPayment\Models\Payment;
+use Pondol\BtcPayment\Models\Deposit;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 
@@ -17,10 +17,9 @@ class ConfirmedPaymentEvent
      * @param  Order  $order
      * @return void
      */
-    public function __construct(Payment $confirmedPayment)
+    public function __construct(Deposit $confirmedPayment)
     {
         $this->confirmedPayment = $confirmedPayment;
-        echo "Pondol\BtcPayment\Events Called".PHP_EOL;
-        //Log::debug('ConfirmedPaymentEvent constructor :'.$this->confirmedPayment);
+        Log::debug('ConfirmedPaymentEvent constructor :'.$this->confirmedPayment);
     }
 }
