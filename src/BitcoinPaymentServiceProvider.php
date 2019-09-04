@@ -35,11 +35,11 @@ class BitcoinPaymentServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if ($this->app->runningInConsole()) {
+        // if ($this->app->runningInConsole()) { // only excute on console
             $this->commands([
                 Commands\CheckPayment::class,
             ]);
-        }
+        // }
 
         $this->registerBitcoind();
 

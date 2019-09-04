@@ -48,6 +48,7 @@ class CheckPayment extends Command
 
     private function checkPayment($bitcoind)
     {
+        // echo "i am here";
         // get transaction from bitcoind
         // $transactions = $bitcoind->listtransactions('*', 50);
         $transactions = $bitcoind->listtransactions('*', 100); // 테스트를 용이하게 하기위해서 5개만 구한다. (나중에 되도록 많이)
@@ -83,9 +84,9 @@ class CheckPayment extends Command
                     // find user_id who maybe use same address
                     $prepayment = Deposit::same_address($trans['address'])->first();
 
-                    if ($trans['txid'] == "29adbcfcb200043ca8f2900d979ca7bc6515e9672e0f2f879286f436c5276ed7") {
+                    // if ($trans['txid'] == "29adbcfcb200043ca8f2900d979ca7bc6515e9672e0f2f879286f436c5276ed7") {
 
-                    }
+                    // }
                     if (isset($prepayment->user_id)) {
                         $payment->user_id = $prepayment->user_id;
                     } else {
